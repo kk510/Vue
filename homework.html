@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app"></div>
+    <script>
+        Vue.component("PhotoItem", {
+            props: {
+                imgSrc: {
+                    type: String
+                },
+                imgName: {
+                    type: String
+                }
+            },
+            template: `
+          <div class="photoItem">
+          <img :src="imgSrc">
+          <p>
+            <h1> imgName:{{imgName}} </h1>
+          </p>
+          
+          </div>
+        `,
+        });
+
+        app = new Vue({
+            el: `#app`,
+            template: `
+        <div>{{msg}}
+           <PhotoItem :imgSrc="imgSrc" :imgName = "imgName"></PhotoItem>
+           <PhotoItem :imgSrc="imgSrc" :imgName = "imgName"></PhotoItem>
+           <PhotoItem :imgSrc="imgSrc" :imgName = "imgName"></PhotoItem>
+        </div>`,
+            data: {
+                msg: "hello world",
+                imgSrc: './img/logo.jpg',
+                imgName: "logo.png"
+            },
+        });
+    </script>
+</body>
+
+</html>

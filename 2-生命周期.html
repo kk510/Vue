@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app"></div>
+    <script>
+        Vue.component("ComponentB", {
+            methods: {
+                handleClick() {
+                    this.count++;
+                },
+            },
+            data() {
+                return {
+                    count: 0,
+                };
+            },
+            beforeCreate() {
+                console.log("bc-B");
+            },
+            created() {
+                console.log("c-B");
+            },
+            beforeMount() {
+                console.log("bm-B");
+            },
+            mounted() {
+                console.log("m-B");
+            },
+            template: `<div>ComponentB
+        {{count}}
+        <button @click="handleClick">click</button>
+        </div>`,
+        });
+
+        Vue.component("ComponentA", {
+            methods: {
+                handleClick() {
+                    this.count++;
+                },
+            },
+            data() {
+                return {
+                    count: 0,
+                };
+            },
+            beforeCreate() {
+                console.log("bc-A");
+            },
+            created() {
+                console.log("c-A");
+            },
+            beforeMount() {
+                console.log("bm-A");
+            },
+            mounted() {
+                console.log("m-A");
+            },
+            template: `<div>ComponentA
+        {{count}}
+        <ComponentB></ComponentB>
+        <button @click="handleClick">click</button>
+        </div>`,
+        });
+
+        //beforeCreate
+        //created
+
+        //beforemounte - 挂载-》添加到视图了
+        //mounted
+
+        //beforeUpdate
+        //update
+
+        //beforeDestroy
+        //destroyed
+
+        app = new Vue({
+            el: `#app`,
+            template: `
+        <div>{{msg}}
+            <ComponentA></ComponentA>
+        </div>`,
+            data: {
+                msg: "hello world",
+            },
+            beforeCreate() {
+                console.log("bc");
+            },
+            created() {
+                console.log("c");
+            },
+            beforeMount() {
+                console.log("bm");
+            },
+            mounted() {
+                console.log("m");
+            },
+            beforeUpdate() {
+                console.log("bu");
+            },
+            updated() {
+                console.log("u");
+            },
+            beforeDestroyed() {
+                console.log("bd");
+            },
+            destroyed() {
+                console.log("d");
+            },
+        });
+    </script>
+</body>
+
+</html>

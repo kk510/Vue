@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app"></div>
+    <script>
+        Vue.component("ComponentA", {
+            props: {
+                title: {
+                    type: String,
+                    //默认
+                    default: "title-a",
+                    //必传
+                    // required: true
+                },
+                student: {
+                    type: Object,
+                    //校验规则
+                    validator(val) {
+                        // console.log(val);
+                        return val.name === "xiaohong"
+                        return true
+                    }
+                }
+            },
+            methods: {
+                handleClick() {
+                    this.count++;
+                },
+            },
+            data() {
+                return {
+                    count: 0,
+                };
+            },
+            template: `<div>ComponentA
+        {{count}}
+        {{title}}
+        <button @click="handleClick">click</button>
+        </div>`,
+        });
+
+        app = new Vue({
+            el: `#app`,
+            template: `
+        <div>{{msg}}
+            <ComponentA title="123" :student="{name:'xiaohong'}"></ComponentA>
+            <ComponentA ></ComponentA>
+        </div>`,
+            data: {
+                msg: "hello world",
+            },
+        });
+    </script>
+</body>
+
+</html>
