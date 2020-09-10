@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue.js"></script>
+</head>
+<div id="app">
+
+    <cpn><span slot="left">替换了left</span></cpn>
+    <cpn><span slot="right">替换了right</span></cpn>
+
+</div>
+<template id="cpn">
+    <div>
+        <slot name="left">
+            <span>左边</span>
+        </slot>
+        <slot name="middle">
+            <span>中间</span>
+        </slot>
+        <slot name="right">
+            <span>右边</span>
+        </slot>
+    </div>
+</template>
+
+<body>
+    <script>
+        const app = new Vue({
+            el: "#app",
+            data: {
+                message: "你好啊"
+            },
+            components: {
+                cpn: {
+                    template: "#cpn",
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

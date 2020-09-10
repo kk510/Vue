@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script src="node_modules/vue/dist/vue.js"></script>
+
+<body>
+    <div id="app">
+        <!-- 遍历过程没有使用下标 -->
+        <ul>
+            <li v-for="(item,index) in names">{{item}} - {{index+1}}</li>
+        </ul>
+        <!-- 对象中(value,key,index) -->
+        <ol>
+            <li v-for="(key,value,index) in info">{{value}}-{{key}}-{{index}}</li>
+        </ol>
+    </div>
+    <script>
+        const app = new Vue({
+            el: "#app",
+            data: {
+                message: "你好啊",
+                names: ['why', '1', '2', '3'],
+                info: {
+                    name: 'why',
+                    age: 18,
+                    height: 123
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
